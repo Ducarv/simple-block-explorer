@@ -97,15 +97,16 @@ function App() {
         </button>
       </form>
 
-      <div>
-        <h1>Node infos</h1>
-        <div className='node-div'>
-          {node && (
-            <div className='node-basic-infos'>
-              <p>{node.hash}</p>
-              <p>{node.n_tx}</p>
-            </div>
-          )}
+      <div className='main-block-div'>
+        <div className='block-info-div'>
+          <h2>Block information</h2>
+          <div className='block-infos'>
+            <span>Hash: {node?.hash}</span>
+          </div>
+        </div>
+
+        <div className='block-transactions'>
+          <h2>Transactions</h2>
         </div>
       </div>
     </>

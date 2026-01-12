@@ -5,11 +5,31 @@
   text-align: center;
 }
 
-.node-div {
-  border: 3px solid white;
+.main-block-div {
+  display: flex;
+  padding-top: 50px;
+  width: 70%;
+  height: auto;
+  margin: 0 auto;
+  justify-content: space-between;
+}
 
-  .node-basic-infos {
-    color: white;
-    font-weight: 500;
+.main-block-div .block-info-div {
+  width: 45%;
+  border: 5px solid;
+
+  .block-infos {
+    padding: 5px 10px 5px 10px;
+    font-size: large;
+    text-align: start;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
+}
+
+.main-block-div .block-transactions {
+  width: 50%;
+  border: 5px solid;
 }
