@@ -32,4 +32,32 @@
 .main-block-div .block-transactions {
   width: 50%;
   border: 5px solid;
+
+  .transactions-infos {
+    padding: 5px 10px 5px 10px;
+    font-size: large;
+    text-align: start;
+  }
+
+  .transactions-list {
+    height: 60vh;
+    overflow-y: scroll;
+    
+    padding: 5px 10px 5px 10px;
+    text-align: start;
+    
+
+    .transaction-data {
+      border: 3px solid;
+      margin: 10px 5px;
+      padding: 5px;
+      overflow-x: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      >p {
+        margin: 0;
+      }
+    }
+  }
 }

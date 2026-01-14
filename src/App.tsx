@@ -72,7 +72,7 @@ interface Out {
 }
 
 function App() {
-  const [node, setNode] = useState<BlockProps | null>(null);
+  const [block, setBlock] = useState<BlockProps | null>(null);
   const [loading, setLoading] = useState(false);
   
   const fetchBlock = async (formData: FormData) => {
@@ -84,7 +84,7 @@ function App() {
 
     const response = await fetch(`https://blockchain.info/rawblock/${hash}`)
     const data = await response.json();
-    setNode(data as unknown as BlockProps);
+    setBlock(data as unknown as BlockProps);
     setLoading(false)
   }
 
@@ -101,12 +101,27 @@ function App() {
         <div className='block-info-div'>
           <h2>Block information</h2>
           <div className='block-infos'>
-            <span>Hash: {node?.hash}</span>
+            <span>Hash: {block?.hash}</span>
+            <p>Height: {block?.height}</p>
           </div>
         </div>
 
         <div className='block-transactions'>
           <h2>Transactions</h2>
+          <div className='transactions-infos'>
+            <span>Total: {block?.n_tx}</span>
+          </div>
+          <div className='transactions-list'>
+            {block?.tx && (
+              block.tx.map((tx) => (
+                <div className='transaction-data'>
+                  <span>Hash: {tx.hash}</span>
+                  <p>Amount: {tx.inputs[0].prev_out.value - tx.fee}</p>
+                  <p>Fee: {tx.fee}</p>
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
     </>
