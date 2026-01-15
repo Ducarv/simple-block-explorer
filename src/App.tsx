@@ -91,26 +91,32 @@ function App() {
   return (
     <>
       <form action={fetchBlock}>
-        <input name='hash' />
-        <button type='submit' disabled={loading}>
-          {loading ? 'Loading...' : 'Find'}
-        </button>
+        <div className='search-div'>
+          <input name='hash'  className='hash-input' placeholder='block hash'/>
+          <button type='submit' disabled={loading} className='search-btn'>
+            {loading ? 'Loading...' : 'Find'}
+          </button>
+        </div>
       </form>
 
       <div className='main-block-div'>
         <div className='block-info-div'>
           <h2>Block information</h2>
-          <div className='block-infos'>
-            <span>Hash: {block?.hash}</span>
-            <p>Height: {block?.height}</p>
-          </div>
+          {block && (
+            <div className='block-infos'>
+              <span>Hash: {block?.hash}</span>
+              <p>Height: {block?.height}</p>
+            </div>
+          )}
         </div>
 
         <div className='block-transactions'>
           <h2>Transactions</h2>
-          <div className='transactions-infos'>
-            <span>Total: {block?.n_tx}</span>
-          </div>
+          {block && (
+            <div className='transactions-infos'>
+              <span>Total: {block?.n_tx}</span>
+            </div>
+          )}
           <div className='transactions-list'>
             {block?.tx && (
               block.tx.map((tx) => (
