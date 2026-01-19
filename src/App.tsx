@@ -19,6 +19,10 @@ function App() {
     setLoading(false)
   }
 
+  const formatUnixToDate = (time: number) => {
+    return new Date(time * 1000)
+  }
+
   return (
     <>
       <form action={fetchBlock}>
@@ -34,11 +38,18 @@ function App() {
         <div className='block-info-div'>
           <h2>Block information</h2>
           {block && (
-            <div className='block-infos'>
-              <span>Hash: {block?.hash}</span>
-              <p>Height: {block?.height}</p>
-              <span>Previous block: {block.prev_block}</span>
-              <p>Merkle root: {block.mrkl_root}</p>
+            <div className='block-data-container'>
+              <div className='block-infos'>
+                <span>Hash: {block?.hash}</span>
+                <p>Height: {block?.height}</p>
+                <p>Fee: {block.fee} sats</p>
+                <span>Previous block: {block.prev_block}</span>
+                <span>Merkle root: {block.mrkl_root}</span>
+                <p>Nonce: {block.nonce}</p>
+                <p>Size: {block.size} Bytes</p>
+                <p>Time: {String(formatUnixToDate(block.time).toLocaleDateString('en-US'))}</p>
+              </div>
+              <img src="../public/bitcoin-btc-logo.svg" alt="bitcoin-logo" />
             </div>
           )}
         </div>

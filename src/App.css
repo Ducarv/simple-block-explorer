@@ -45,13 +45,21 @@
   border: 5px solid;
 
   .block-infos {
+    display: flex;
+    flex-direction: column;
     padding: 5px 10px 5px 10px;
     font-size: large;
     text-align: start;
 
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    >p {
+      margin: 0;
+    }
+
+    >span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 }
 
