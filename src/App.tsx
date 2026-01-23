@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import type { BlockProps } from './types/Block';
+import btcLogo from "./assets/bitcoin-btc-logo.svg"
 
 function App() {
   const [block, setBlock] = useState<BlockProps | null>(null);
@@ -40,16 +41,18 @@ function App() {
           {block && (
             <div className='block-data-container'>
               <div className='block-infos'>
-                <span>Hash: {block?.hash}</span>
-                <p>Height: {block?.height}</p>
-                <p>Fee: {block.fee} sats</p>
-                <span>Previous block: {block.prev_block}</span>
-                <span>Merkle root: {block.mrkl_root}</span>
-                <p>Nonce: {block.nonce}</p>
-                <p>Size: {block.size} Bytes</p>
-                <p>Time: {String(formatUnixToDate(block.time).toLocaleDateString('en-US'))}</p>
+                <p><strong>Hash: </strong>{block?.hash}</p>
+                <p><strong>Height: </strong>{block?.height}</p>
+                <p><strong>Fee: </strong>{block.fee} sats</p>
+                <p><strong>Previous block: </strong>{block.prev_block}</p>
+                <p><strong>Merkle root: </strong>{block.mrkl_root}</p>
+                <p><strong>Nonce: </strong>{block.nonce}</p>
+                <p><strong>Size: </strong>{block.size} Bytes</p>
+                <p><strong>Time: </strong>{formatUnixToDate(block.time).toLocaleDateString('en-US')}</p>
               </div>
-              <img src="../public/bitcoin-btc-logo.svg" alt="bitcoin-logo" />
+              <div className='block-image'>
+                <img src={btcLogo} alt="bitcoin-logo" />
+              </div>
             </div>
           )}
         </div>
@@ -58,13 +61,13 @@ function App() {
           <h2>Transactions</h2>
           {block && (
             <div className='transactions-infos'>
-              <span>Total: {block?.n_tx}</span>
+              <span><strong>Total: </strong>{block?.n_tx}</span>
             </div>
           )}
           <div className='transactions-list'>
             {block?.tx && (
               block.tx.map((tx) => (
-                <div className='transaction-data'>
+                <div key={tx.hash} className='transaction-data'>
                   <span>Hash: {tx.hash}</span>
                   <p>Amount: {tx.inputs[0].prev_out.value - tx.fee}</p>
                   <p>Fee: {tx.fee}</p>
