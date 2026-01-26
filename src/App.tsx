@@ -25,7 +25,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className='app'>
       <form action={fetchBlock}>
         <div className='search-div'>
           <input name='hash'  className='hash-input' placeholder='block hash'/>
@@ -77,7 +77,7 @@ function App() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
